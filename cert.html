@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel - Certificación de Stickers</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; background: #f0f0f0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+    th, td { border: 1px solid #ccc; padding: 0.5em; text-align: left; }
+    th { background: #ddd; }
+    button.cert, button.uncert { padding: 0.2em 0.5em; }
+    button.cert { background: #4CAF50; color: #fff; }
+    button.uncert { background: #f44336; color: #fff; }
+  </style>
+</head>
+<body>
+  <h1>Admin Panel: Certificar Stickers</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Usuario (UID)</th>
+        <th>Sticker ID</th>
+        <th>Mensaje</th>
+        <th>Fecha</th>
+        <th>Certificado</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody id="adminTable"></tbody>
+  </table>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "...",
+      authDomain: "...",
+      projectId: "...",
+      storageBucket: "...",
+      messagingSenderId: "...",
+      appId: "...",
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    const adminTable = document.getElementById("adminTable");
+
+    // Solo administradores: reemplaza con tu UID
+    const ADMIN_UIDS = ["TU_UID_AQUÍ"];
+
+    onAuthStateChanged(auth, user => {
+      if (!user || !ADMIN_UIDS.includes(user.uid)) {
+        alert("Acceso denegado.");
+        return;
+      }
+      loadAllUsers();
+    });
+
+    async function loadAllUsers() {
+      adminTable.innerHTML = "";
+      const snapshot = await getDocs(collection(db, "users"));
+      snapshot.forEach(docSnap => {
+        const uid = docSnap.id;
+        const data = docSnap.data();
+        if (data.stickers) {
+          Object.entries(data.stickers).forEach(([stickerId, info]) => {
+            if (!info.claimed) return;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${uid}</td>
+              <td>${stickerId}</td>
+              <td>${info.message || ""}</td>
+              <td>${info.timestamp ? new Date(info.timestamp).toLocaleString() : ""}</td>
+              <td>${info.certified ? "✅" : "—"}</td>
+              <td>
+                <button class="${info.certified ? 'uncert' : 'cert'}">
+                  ${info.certified ? 'Des-certificar' : 'Certificar'}
+                </button>
+              </td>
+            `;
+            const btn = tr.querySelector('button');
+            btn.addEventListener("click", () => toggleCert(uid, stickerId, !info.certified));
+            adminTable.appendChild(tr);
+          });
+        }
+      });
+    }
+
+    async function toggleCert(uid, stickerId, shouldCertify) {
+      const userDoc = doc(db, "users", uid);
+      await updateDoc(userDoc, {
+        [`stickers.${stickerId}.certified`]: shouldCertify
+      });
+      loadAllUsers();
+    }
+  </script>
+</body>
+</html>
