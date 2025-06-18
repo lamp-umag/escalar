@@ -263,7 +263,7 @@ html += `
   } else {
     const certified = data.certified;
     html += `
-      <img src="${info.image || 'stk/' + id + '.png'}" style="width: 120px; display:block; margin: 10px 0;">
+<img src="${info.image || 'stk/' + id + '.png'}" style="max-width: 90%; height: auto; display: block; margin: 10px auto; border-radius: 12px;">
       <h3>${certified ? "✅ Certificado por el profesor" : ""}</h3>
       <p><strong>Descripción:</strong> ${info.description_fun || "No disponible"}</p>
       <p><strong>Contenido:</strong> ${info.description_tech || "No disponible"}</p>
