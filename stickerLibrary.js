@@ -144,7 +144,7 @@ export const stickerLibrary = {
             {
               id,
               name: `Sticker ${id.toUpperCase()}`,
-              unlockable: true,
+              unlockable: false,
               requirement: "Reflexiona brevemente por qué mereces esta sticker.",
               description_fun: "Texto narrativo divertido.",
               description_tech: "Contenido académico relacionado.",
