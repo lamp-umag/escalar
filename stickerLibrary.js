@@ -97,21 +97,28 @@ export const stickerLibrary = {
 
 
   // Placeholder safe copies for all others
+// tus stickers reales aquí...
+
+  // Placeholder safe copies for all others
   ...Object.fromEntries(
     Array.from({ length: 3 }, (_, u) =>
       Array.from({ length: 3 }, (_, c) =>
         Array.from({ length: 3 }, (_, s) => {
           const id = `u${u + 1}c${c + 1}s${s + 1}`;
-          if (["u1c1s1", "u1c1s2", "u1c1s3"].includes(id)) return null;
+          if ([
+            "u1c1s1", "u1c1s2", "u1c1s3",
+            "u1c2s1", "u1c2s2", "u1c2s3",
+            "u1c3s1", "u1c3s2", "u1c3s3"
+          ].includes(id)) return null;
           return [
             id,
             {
               id,
               name: `Sticker ${id.toUpperCase()}`,
-              unlockable: false,
-              requirement: "Reflexiona por qué mereces esta sticker.",
-              description_fun: "Texto narrativo .",
-              description_tech: "Contenido académico .",
+              unlockable: true,
+              requirement: "Reflexiona brevemente por qué mereces esta sticker.",
+              description_fun: "Texto narrativo divertido.",
+              description_tech: "Contenido académico relacionado.",
               image: `stk/${id}.png`,
               links: []
             }
