@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Press Start 2P', sans-serif;
+  background: linear-gradient(to bottom, #1c1c3c, #4a6fa5);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #fff;
+}
+
+header {
+  background: #222244;
+  padding: 1em;
+  text-align: center;
+  font-size: 1.2em;
+  border-bottom: 3px solid #444;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  background: #333355;
+}
+
+.tab {
+  background: #444466;
+  color: white;
+  border: none;
+  padding: 0.7em 1em;
+  margin: 0.5em;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+.tab.active {
+  background: #66aaff;
+  color: black;
+}
+
+.page {
+  display: none;
+  padding: 2em;
+}
+.page.active {
+  display: block;
+}
+
+.class-section {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  margin-bottom: 2em;
+  align-items: center;
+}
+
+.class-section h3 {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  margin-right: 1em;
+  font-size: 0.7em;
+  color: #ccc;
+}
+
+.sticker {
+  width: 100px;
+  height: 100px;
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  position: relative;
+  background: #111;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.sticker img {
+  display: block;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.sticker.locked img {
+  filter: grayscale(100%);
+  opacity: 0.3;
+}
+
+.sticker .label {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  width: 100%;
+  font-size: 0.5em;
+  color: white;
+  text-align: center;
+  padding: 2px;
+}
+
+/* Hover color por tipo */
+.sticker.s1:hover:not(.locked), .sticker.s1:focus:not(.locked) {
+  outline: 3px solid #0072B2;
+}
+.sticker.s2:hover:not(.locked), .sticker.s2:focus:not(.locked) {
+  outline: 3px solid #E69F00;
+}
+.sticker.s3:hover:not(.locked), .sticker.s3:focus:not(.locked) {
+  outline: 3px solid #CC79A7;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #222244;
+  color: white;
+  padding: 1em;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+}
+.modal.hidden {
+  display: none;
+}
+textarea {
+  width: 100%;
+  min-height: 100px;
+  margin-top: 1em;
+  background: #111;
+  color: white;
+  border: 1px solid #555;
+  padding: 0.5em;
+  font-family: monospace;
+}
+button {
+  font-family: inherit;
+}
+
+
+
+
+
+/* Uniform color outline per type (hover + focus + selected) */
+.sticker.s1:hover, .sticker.s1.selected {
+  outline: 3px solid #0072B2; /* blue */
+}
+.sticker.s2:hover, .sticker.s2.selected {
+  outline: 3px solid #E69F00; /* orange */
+}
+.sticker.s3:hover, .sticker.s3.selected {
+  outline: 3px solid #009E73; /* green */
+}
+
+
+
+
+#container {
+  display: flex;
+  flex-direction: row;
+}
+
+#album {
+  flex: 2;
+}
+
+.details-panel {
+  flex: 1;
+  padding: 1em;
+  background-color: #1e1e1e;
+  border-left: 2px solid #444;
+  color: #eee;
+}
+.details-panel.hidden {
+  display: none;
+}
+.details-panel h2 {
+  margin-top: 0;
+}
+.details-panel textarea {
+  width: 100%;
+  height: 80px;
+  margin-top: 10px;
+}
+
+
+.certified-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 1.1rem;
+  background-color: #ffffffcc;
+  border-radius: 50%;
+  padding: 1px 5px;
+  pointer-events: none;
+  z-index: 2;
+}
+.sticker {
+  position: relative;
+  overflow: hidden;
+}
+
+#user-info {
+  margin: 0.5em 1em;
+}
+.hidden {
+  display: none;
+}
+
+#tabs[hidden] {
+  display: none !important;
+}

@@ -1,42 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+<!-- Firebase SDK (correcto para usar con módulos ES6) -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
-        }
-        main {
-            padding: 20px;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Álbum ESCALAR</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <header>Test Page</header>
-    <main>
-        <p>This is a simple test page using HTML & CSS.</p>
-        <p>Hope it looks decent.</p>
-    </main>
-    <footer>&copy; 2025 LAMP UMAG</footer>
+  <header>Álbum ESCALAR</header>
+  <div id="user-info">
+    <button id="loginBtn">Iniciar sesión con Google</button>
+    <span id="userEmail" class="hidden"></span>
+    <button id="logoutBtn" class="hidden">Cerrar sesión</button>
+  </div>
+
+  <div class="tabs" id="tabs" hidden>
+    <button class="tab active" data-unit="1">Unidad 1</button>
+    <button class="tab" data-unit="2">Unidad 2</button>
+    <button class="tab" data-unit="3">Unidad 3</button>
+  </div>
+
+<main id="album" hidden></main>
+
+  <div id="stickerDetails" class="details-panel hidden"></div>
+
+  <div id="stickerModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="stickerImage" src="" alt="Sticker grande" />
+      <h2 id="stickerTitle">Título</h2>
+      <p id="stickerDescription">Descripción técnica</p>
+      <textarea id="stickerNote" placeholder="¿Por qué reclamas este sticker?"></textarea>
+      <button id="claimStickerBtn">Guardar reflexión y reclamar</button>
+    </div>
+  </div>
+
+  <!-- ⬇️ Tus scripts van al final del body ⬇️ -->
+  <script type="module" src="firebase-init.js?v=1.0.3"></script>
+  <script type="module" src="stickerLibrary.js?v=1.0.3"></script>
+  <script type="module" src="app.js?v=1.0.3"></script>
 </body>
 </html>
