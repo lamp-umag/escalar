@@ -153,9 +153,9 @@ function init() {
 
 function renderAlbum() {
   const unitTitles = {
-    1: "Análisis Exploratorio",
-    2: "Inferencia Estadística",
-    3: "Psicometría Aplicada"
+    1: "Introducción",
+    2: "Numéricas",
+    3: "Relaciones"
   };
 
   for (let u = 1; u <= 3; u++) {
