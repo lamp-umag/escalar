@@ -94,6 +94,37 @@ export const stickerLibrary = {
     image: "stk/u1c3s3.png",
     links: []
   }, // <-- COMA AQUÍ
+  // Unidad 3: Relaciones — Clase 1: Contingencia
+  "u3c1s1": {
+    id: "u3c1s1",
+    name: "Cruce Categórico",
+    unlockable: true,
+    requirement: "¿Construiste una tabla de contingencia o encontraste una en la literatura? Cuéntalo.",
+    description_fun: "Dos clasificaciones se cruzaron… ¡y sobrevivieron para contarlo!",
+    description_tech: "Hablamos de contingencia cuando combinamos dos variables categóricas. Esto permite analizar cómo se distribuyen los casos según múltiples características. Utilizamos tablas de contingencia y gráficos como barras agrupadas o apiladas para representar esta relación.",
+    image: "stk/u3c1s1.png",
+    links: []
+  },
+  "u3c1s2": {
+    id: "u3c1s2",
+    name: "Constructores de Barras",
+    unlockable: true,
+    requirement: "¿Construiste los tres tipos de gráficos bivariantes categóricos? ¿Puedes interpretarlos adecuadamente?",
+    description_fun: "¡Agrupar, apilar, escalar! Un día más en la obra de la visualización.",
+    description_tech: "Para visualizar relaciones entre dos variables categóricas se utilizan distintos gráficos: barras agrupadas, barras apiladas y barras apiladas escaladas. Cada uno representa los datos de forma distinta según si se muestran frecuencias absolutas o proporciones, y según el tipo de eje usado.",
+    image: "stk/u3c1s2.png",
+    links: []
+  },
+  "u3c1s3": {
+    id: "u3c1s3",
+    name: "¿De Acuerdo?",
+    unlockable: true,
+    requirement: "¿Qué usos de las escalas de Likert conoces? ¿Qué otros métodos similares has visto? ¿Crees que sirven para todo tipo de análisis?",
+    description_fun: "Cinco caritas. Mil opiniones.",
+    description_tech: "Las escalas de Likert, desarrolladas por Rensis Likert, permiten medir actitudes u opiniones en formato ordinal (por ejemplo, de 1 a 5). También existen diferenciales semánticos y otros formatos. Aunque son ordinales, a veces se tratan como numéricas usando promedios y desviaciones estándar. Esto depende del contexto, pero lo clave es comprender los datos más allá de seguir recetas fijas.",
+    image: "stk/u3c1s3.png",
+    links: []
+  },
 
   // Placeholder safe copies for all others
   ...Object.fromEntries(
