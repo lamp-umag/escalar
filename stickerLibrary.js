@@ -94,7 +94,7 @@ export const stickerLibrary = {
     image: "stk/u1c3s3.png",
     links: []
   }
-,
+
 
   // Placeholder safe copies for all others
   ...Object.fromEntries(
