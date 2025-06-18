@@ -135,7 +135,9 @@ export const stickerLibrary = {
           if ([
             "u1c1s1", "u1c1s2", "u1c1s3",
             "u1c2s1", "u1c2s2", "u1c2s3",
-            "u1c3s1", "u1c3s2", "u1c3s3"
+            "u1c3s1", "u1c3s2", "u1c3s3",
+            "u3c1s1", "u3c1s2", "u3c1s3"
+
           ].includes(id)) return null;
           return [
             id,
