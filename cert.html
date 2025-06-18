@@ -49,15 +49,15 @@
     const adminTable = document.getElementById("adminTable");
 
     // Solo administradores: reemplaza con tu UID
-    const ADMIN_UIDS = ["TU_UID_AQUÍ"];
+const ADMIN_EMAILS = ["hermanelgueta@gmail.com"];
 
-    onAuthStateChanged(auth, user => {
-      if (!user || !ADMIN_UIDS.includes(user.uid)) {
-        alert("Acceso denegado.");
-        return;
-      }
-      loadAllUsers();
-    });
+onAuthStateChanged(auth, user => {
+  if (!user || !ADMIN_EMAILS.includes(user.email)) {
+    alert("Acceso denegado.");
+    return;
+  }
+  loadAllUsers();
+});
 
     async function loadAllUsers() {
       adminTable.innerHTML = "";
