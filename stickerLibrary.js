@@ -8,12 +8,7 @@ export const stickerLibrary = {
     description_fun: "Dicen que esta lámpara sólo ilumina a quienes están dispuestos a renunciar a su propio ego y a entregar su corazón.",
     description_tech: "La estadística es la disciplina que nos enseña cómo recolectar, organizar, analizar e interpretar datos para construir conocimiento (Elgueta, 2025). La estadística descriptiva se enfoca en resumir y hacer los datos más comprensibles.",
     image: "stk/u1c1s1.png",
-links: [
-  {
-    url: "https://heelgueta.gitbook.io/edesc/p0004-i-introduccion",
-    label: "Introducción a la Estadística (GitBook)"
-  }
-]
+links: [  {url: "https://heelgueta.gitbook.io/edesc/p0004-i-introduccion", label: "Introducción a la Estadística (GitBook)"}]
   },
   "u1c1s2": {
     id: "u1c1s2",
@@ -23,7 +18,7 @@ links: [
     description_fun: "Este curioso personaje no descansa hasta encontrar lo que busca... Si no usas DOIs o normas APA, se duerme muy triste.",
     description_tech: "La estadística ha sido descrita como la gramática de la ciencia (Pearson). Nos acercamos a la lectura crítica de papers científicos como parte fundamental del proceso de formación.",
     image: "stk/u1c1s2.png",
-    links: ["https://heelgueta.gitbook.io/compu/p0000-1-fundamentos/p0002-1-2-literatura"]
+links: [  {url: "https://heelgueta.gitbook.io/compu/p0000-1-fundamentos/p0002-1-2-literatura", label: "Link"}]
   },
   "u1c1s3": {
     id: "u1c1s3",
@@ -33,7 +28,7 @@ links: [
     description_fun: "Apoyarse en las estadísticas sin entenderlas puede ser cómodo... pero no muy iluminador.",
     description_tech: "‘Las estadísticas son como un poste de la luz para un borracho – las usa para apoyarse en vez de para iluminar. (cf. Housman)’ Esta cita clásica refleja los riesgos del mal uso y la interpretación sesgada de estadísticas en contextos no rigurosos.",
     image: "stk/u1c1s3.png",
-    links: ["https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0005-1-antecedentes/p0018-1-3-advertencias"]
+links: [  {url: "https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0005-1-antecedentes/p0018-1-3-advertencias", label: "Link"}]
   },
 
   // Clase 2: Variables
@@ -55,7 +50,7 @@ links: [
     description_fun: "¡Nada funciona si no está bien clasificado!",
     description_tech: "Existen variables cualitativas y cuantitativas, con niveles de medición nominal, ordinal, de intervalo y de razón. Además, cumplen distintos roles: independientes, dependientes, predictoras, criterio, etc.",
     image: "stk/u1c2s2.png",
-    links: ["https://www.youtube.com/watch?v=6pDH66X3ClA"]
+links: [  {url: "https://www.youtube.com/watch?v=6pDH66X3ClA", label: "Video"}]
   },
   "u1c2s3": {
     id: "u1c2s3",
@@ -65,7 +60,7 @@ links: [
     description_fun: "Puede medir lo visible y lo invisible. Supercalifragilístico.",
     description_tech: "En psicología medimos habilidades, emociones, creencias, conductas, tiempos de reacción, etc., usando escalas psicométricas, entrevistas, observaciones, registros automatizados, entre otros.",
     image: "stk/u1c2s3.png",
-    links: ["https://www.youtube.com/watch?v=QXn3r5plloI"]
+links: [  {url: "https://www.youtube.com/watch?v=QXn3r5plloI", label: "Video"}]
   },
 
   // Clase 3: Datos
@@ -77,7 +72,7 @@ links: [
     description_fun: "No todos los tesoros están enterrados. Algunos están en formato CSV.",
     description_tech: "Un buen conjunto de datos, bien recopilado y organizado, es un recurso valioso. En ciencia de datos usamos el formato tidy y promovemos el uso de datos abiertos para replicabilidad y transparencia.",
     image: "stk/u1c3s1.png",
-    links: ["https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0019-2-organizar/p0025-2-3-matriz/p0026-orden"]
+links: [  {url: "https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0019-2-organizar/p0025-2-3-matriz/p0026-orden", label: "Link"}]
   },
   "u1c3s2": {
     id: "u1c3s2",
@@ -87,7 +82,7 @@ links: [
     description_fun: "Una herramienta para cada tipo de variable. Pero no las uses para cortar tramposamente resultados que no nos gustan.",
     description_tech: "La estadística descriptiva es un conjunto de herramientas para resumir datos. Inicialmente usamos frecuencias y gráficos para variables cualitativas, y MTC e histogramas para variables cuantitativas.",
     image: "stk/u1c3s2.png",
-    links: ["https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0030-3-resumir"]
+links: [  {url: "https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0030-3-resumir", label: "Link"}]
   },
   "u1c3s3": {
     id: "u1c3s3",
@@ -97,8 +92,8 @@ links: [
     description_fun: "Este gráfico fue condenado por exceso de 3D y explosiones innecesarias. Vive arrepentido.",
     description_tech: "Los piecharts pueden ser poco informativos, y el uso de gráficos 3D, escalas manipuladas o elementos decorativos innecesarios puede distorsionar la interpretación de los datos.",
     image: "stk/u1c3s3.png",
-    links: ["https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0030-3-resumir/p0036-graficos/p0039-horrores"]
-  }, // <-- COMA AQUÍ
+links: [  {url: "https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0030-3-resumir/p0036-graficos/p0039-horrores", label: "Link"}]
+  }, 
   // Unidad 3: Relaciones — Clase 1: Contingencia
   "u3c1s1": {
     id: "u3c1s1",
