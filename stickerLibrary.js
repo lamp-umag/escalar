@@ -34,7 +34,7 @@ export const stickerLibrary = {
   // Clase 2: Variables
   "u1c2s1": {
     id: "u1c2s1",
-    name: "La Sujeta Blanca",
+    name: "Walter Giardino",
     unlockable: true,
     requirement: "¿Qué tipos de sujetos has leído que se usen en investigaciones psicológicas? Da ejemplos reales.",
     description_fun: "Una rata muy profesional. Ha trabajado con Skinner, Bandura y Netflix.",
@@ -94,7 +94,7 @@ export const stickerLibrary = {
     image: "stk/u1c3s3.png",
     links: []
   }
-
+,
 
   // Placeholder safe copies for all others
   ...Object.fromEntries(
