@@ -1,34 +1,101 @@
 export const stickerLibrary = {
+  // Clase 1: Antecedentes
   "u1c1s1": {
     id: "u1c1s1",
-    name: "La Variable Misteriosa",
+    name: "La Lámpara del Saber",
     unlockable: true,
-    requirement: "Escribe por qué crees que esta variable es especial.",
-    description_fun: "Cuenta la leyenda que cambió tres veces de tipo.",
-    description_tech: "Introduce tipos de variable: cualitativa y cuantitativa.",
+    requirement: "¿Qué es para ti la estadística y por qué sería importante para la psicología?",
+    description_fun: "Dicen que esta lámpara sólo ilumina a quienes están listos para ver.",
+    description_tech: "La estadística es la disciplina que nos enseña cómo recolectar, organizar, analizar e interpretar datos para construir conocimiento (Elgueta, 2025). La estadística descriptiva se enfoca en resumir y hacer los datos más comprensibles.",
     image: "stk/u1c1s1.png",
-    links: [{ label: "Manual de Estadística", url: "#" }]
+    links: []
   },
   "u1c1s2": {
     id: "u1c1s2",
-    name: "Tipo Top",
+    name: "El Buscapapers",
     unlockable: true,
-    requirement: "Explica qué tipo de variable es tu favorita.",
-    description_fun: "Solo los sabios diferencian nominal y ordinal sin pestañear.",
-    description_tech: "Escalas de medición: nominal, ordinal, intervalo, razón.",
+    requirement: "¿Qué paper encontraste que te llamó la atención en la actividad práctica? ¿Qué conceptos no entendiste al principio pero pudiste aclarar?",
+    description_fun: "Este curioso personaje no descansa hasta encontrar la verdad... o al menos un buen DOI.",
+    description_tech: "La estadística ha sido descrita como la gramática de la ciencia (Pearson). Por eso nos acercamos a la lectura crítica de papers científicos como parte fundamental del proceso.",
     image: "stk/u1c1s2.png",
     links: []
   },
   "u1c1s3": {
     id: "u1c1s3",
-    name: "Conversión Mortal",
-    unlockable: false,
-    requirement: "",
-    description_fun: "Convertir ordinal a continua... y vivir para contarlo.",
-    description_tech: "Errores comunes al usar variables categóricas como numéricas.",
+    name: "El Ebrio de los Datos",
+    unlockable: true,
+    requirement: "¿Qué ejemplo de mal uso de estadísticas conoces? ¿De tu vida o de las clases?",
+    description_fun: "Apoyarse en las estadísticas sin entenderlas puede ser cómodo... pero no muy iluminador.",
+    description_tech: "‘Statistics are like a lamppost to a drunk – more for support than illumination.’ Esta cita clásica refleja los riesgos del mal uso y la interpretación sesgada de estadísticas en contextos no rigurosos.",
     image: "stk/u1c1s3.png",
     links: []
   },
+
+  // Clase 2: Variables
+  "u1c2s1": {
+    id: "u1c2s1",
+    name: "La Sujeta Blanca",
+    unlockable: true,
+    requirement: "¿Qué tipos de sujetos has leído que se usen en investigaciones psicológicas? Da ejemplos reales.",
+    description_fun: "Una rata muy profesional. Ha trabajado con Skinner, Bandura y Netflix.",
+    description_tech: "En psicología se han utilizado diversos sujetos de investigación. El conductismo popularizó el uso de ratas, pero también se emplean humanos, niños, animales no humanos, inteligencias artificiales, etc.",
+    image: "stk/u1c2s1.png",
+    links: []
+  },
+  "u1c2s2": {
+    id: "u1c2s2",
+    name: "Caja Clasificadora",
+    unlockable: true,
+    requirement: "¿Qué tipos de variables conoces según naturaleza, nivel de medición y rol? ¿Puedes dar ejemplos?",
+    description_fun: "¡Nada entra si no está bien clasificado!",
+    description_tech: "Existen variables cualitativas y cuantitativas, con niveles de medición nominal, ordinal, de intervalo y de razón. Además, cumplen distintos roles: independientes, dependientes, predictoras, criterio, etc.",
+    image: "stk/u1c2s2.png",
+    links: []
+  },
+  "u1c2s3": {
+    id: "u1c2s3",
+    name: "La Medidora",
+    unlockable: true,
+    requirement: "¿Qué variables consideras importantes de medir en psicología y qué instrumentos se usan para ello?",
+    description_fun: "Puede medir lo visible... y lo invisible también, si tiene buena validación.",
+    description_tech: "En psicología medimos habilidades, emociones, creencias, conductas, tiempos de reacción, etc., usando escalas psicométricas, entrevistas, observaciones, registros automatizados, entre otros.",
+    image: "stk/u1c2s3.png",
+    links: []
+  },
+
+  // Clase 3: Datos
+  "u1c3s1": {
+    id: "u1c3s1",
+    name: "Tesoro Tidy",
+    unlockable: true,
+    requirement: "¿Sabes distinguir una matriz tidy? ¿Qué dataset abierto conoces que sea valioso para la psicología?",
+    description_fun: "No todos los tesoros están enterrados. Algunos están en formato CSV.",
+    description_tech: "Un buen conjunto de datos, bien recopilado y organizado, es un recurso valioso. En ciencia de datos usamos el formato tidy y promovemos el uso de datos abiertos para replicabilidad y transparencia.",
+    image: "stk/u1c3s1.png",
+    links: []
+  },
+  "u1c3s2": {
+    id: "u1c3s2",
+    name: "La Navaja Estadística",
+    unlockable: true,
+    requirement: "¿Has hecho tablas de frecuencia, gráficos de barra, medidas de tendencia central o histogramas por ti mismo/a? ¿Sobre qué variables?",
+    description_fun: "Una herramienta para cada tipo de variable. Y ninguna para cortar datos que no te gustan.",
+    description_tech: "La estadística descriptiva es un conjunto de herramientas para resumir datos. Usamos frecuencias y gráficos para variables cualitativas, y MTC e histogramas para variables cuantitativas.",
+    image: "stk/u1c3s2.png",
+    links: []
+  },
+  "u1c3s3": {
+    id: "u1c3s3",
+    name: "El Crimen del Piechart",
+    unlockable: true,
+    requirement: "¿Has visto o creado un gráfico terrible? ¿Qué lo hacía inadecuado?",
+    description_fun: "Este gráfico fue condenado por exceso de 3D y explosiones innecesarias.",
+    description_tech: "Los piecharts pueden ser poco informativos, y el uso de gráficos 3D, escalas manipuladas o elementos decorativos innecesarios puede distorsionar la interpretación de los datos.",
+    image: "stk/u1c3s3.png",
+    links: []
+  }
+};
+
 
   // Placeholder safe copies for all others
   ...Object.fromEntries(
