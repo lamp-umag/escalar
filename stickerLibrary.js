@@ -93,8 +93,7 @@ export const stickerLibrary = {
     description_tech: "Los piecharts pueden ser poco informativos, y el uso de gráficos 3D, escalas manipuladas o elementos decorativos innecesarios puede distorsionar la interpretación de los datos.",
     image: "stk/u1c3s3.png",
     links: []
-  }
-};
+  },
 
 
   // Placeholder safe copies for all others
@@ -109,10 +108,10 @@ export const stickerLibrary = {
             {
               id,
               name: `Sticker ${id.toUpperCase()}`,
-              unlockable: true,
-              requirement: "Reflexiona brevemente por qué mereces esta sticker.",
-              description_fun: "Texto narrativo divertido.",
-              description_tech: "Contenido académico relacionado.",
+              unlockable: false,
+              requirement: "Reflexiona por qué mereces esta sticker.",
+              description_fun: "Texto narrativo .",
+              description_tech: "Contenido académico .",
               image: `stk/${id}.png`,
               links: []
             }
