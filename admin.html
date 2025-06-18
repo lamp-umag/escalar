@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Admin - Stickers</title>
+  <style>
+    body { font-family: sans-serif; padding: 1em; }
+    pre { background: #f0f0f0; padding: 1em; overflow-x: auto; }
+    .user-block { border: 1px solid #ccc; margin-bottom: 1em; padding: 1em; }
+    .sticker { margin-left: 1em; font-size: 0.95em; }
+    .log { margin-left: 1em; font-style: italic; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>👩‍🏫 Panel de Administración</h1>
+  <p id="status">Cargando...</p>
+  <div id="output"></div>
+
+  <script type="module">
+    import { auth, db } from './firebase-init.js';
+    import { onAuthStateChanged, signInWithPopup, signOut, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+    import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+    const allowedAdmin = "hermanelgueta@gmail.com";
+    const output = document.getElementById("output");
+    const status = document.getElementById("status");
+
+    onAuthStateChanged(auth, async user => {
+      if (!user) {
+        status.textContent = "Iniciando sesión como administrador...";
+        try {
+          await signInWithPopup(auth, new GoogleAuthProvider());
+        } catch (e) {
+          status.textContent = "Error al iniciar sesión.";
+          console.error(e);
+        }
+        return;
+      }
+
+      if (user.email !== allowedAdmin) {
+        status.innerHTML = `Acceso denegado para ${user.email}. <button onclick="logout()">Cerrar sesión</button>`;
+        return;
+      }
+
+      status.innerHTML = `Conectado como ${user.email}. <button onclick="logout()">Cerrar sesión</button>`;
+      loadAllUsers();
+    });
+
+    async function loadAllUsers() {
+      try {
+        const snap = await getDocs(collection(db, "users"));
+        output.innerHTML = "";
+
+        snap.forEach(doc => {
+          const data = doc.data();
+          const div = document.createElement("div");
+          div.className = "user-block";
+
+          let html = `<h2>${data.email || doc.id}</h2>`;
+          html += "<h3>Stickers desbloqueados:</h3>";
+
+          const stickers = data.stickers || {};
+          const keys = Object.keys(stickers).sort();
+          if (keys.length === 0) {
+            html += "<p><em>No hay stickers desbloqueados</em></p>";
+          } else {
+            keys.forEach(k => {
+              const s = stickers[k];
+              html += `<div class="sticker">🔖 ${k}: "${s.message}" — ${s.timestamp || "sin fecha"} ${s.certified ? "✅" : ""}</div>`;
+            });
+          }
+
+          html += "<h3>Logs:</h3>";
+          const logs = data.logs || [];
+          if (logs.length === 0) {
+            html += "<p><em>Sin logs</em></p>";
+          } else {
+            logs.slice(-20).reverse().forEach(log => {
+              html += `<div class="log">📜 ${log.time}: ${log.action || "acción"}${log.message ? ` — "${log.message}"` : ""}</div>`;
+            });
+          }
+
+          div.innerHTML = html;
+          output.appendChild(div);
+        });
+      } catch (e) {
+        console.error("Error al cargar datos:", e);
+        output.textContent = "Error al cargar los datos.";
+      }
+    }
+
+    window.logout = () => {
+      signOut(auth);
+    };
+  </script>
+</body>
+</html>
