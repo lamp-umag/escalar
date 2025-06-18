@@ -2,7 +2,7 @@ console.log("🔍 Fuera del DOMContentLoaded:", document.getElementById("album")
 import { stickerLibrary } from './stickerLibrary.js';
 import { auth, provider, db } from "./firebase-init.js";
 import { signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 let album;
 let currentUser = null;
