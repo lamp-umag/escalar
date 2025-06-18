@@ -5,30 +5,30 @@ export const stickerLibrary = {
     name: "La Lámpara del Saber",
     unlockable: true,
     requirement: "¿Qué es para ti la estadística y por qué sería importante para la psicología?",
-    description_fun: "Dicen que esta lámpara sólo ilumina a quienes están listos para ver.",
+    description_fun: "Dicen que esta lámpara sólo ilumina a quienes están dispuestos a renunciar a su propio ego y a entregar su corazón.",
     description_tech: "La estadística es la disciplina que nos enseña cómo recolectar, organizar, analizar e interpretar datos para construir conocimiento (Elgueta, 2025). La estadística descriptiva se enfoca en resumir y hacer los datos más comprensibles.",
     image: "stk/u1c1s1.png",
-    links: []
+    links: [https://heelgueta.gitbook.io/edesc/p0004-i-introduccion]
   },
   "u1c1s2": {
     id: "u1c1s2",
     name: "El Buscapapers",
     unlockable: true,
-    requirement: "¿Qué paper encontraste que te llamó la atención en la actividad práctica? ¿Qué conceptos no entendiste al principio pero pudiste aclarar?",
-    description_fun: "Este curioso personaje no descansa hasta encontrar la verdad... o al menos un buen DOI.",
-    description_tech: "La estadística ha sido descrita como la gramática de la ciencia (Pearson). Por eso nos acercamos a la lectura crítica de papers científicos como parte fundamental del proceso.",
+    requirement: "¿Qué paper encontraste en la primera clase y te llamó la atención? ¿Qué conceptos estadísticos no entendiste al principio? ¿Los pudiste aclarar?",
+    description_fun: "Este curioso personaje no descansa hasta encontrar lo que busca... Si no usas DOIs o normas APA, se duerme muy triste.",
+    description_tech: "La estadística ha sido descrita como la gramática de la ciencia (Pearson). Nos acercamos a la lectura crítica de papers científicos como parte fundamental del proceso de formación.",
     image: "stk/u1c1s2.png",
-    links: []
+    links: [https://heelgueta.gitbook.io/compu/p0000-1-fundamentos/p0002-1-2-literatura]
   },
   "u1c1s3": {
     id: "u1c1s3",
-    name: "El Ebrio de los Datos",
+    name: "El Borrachín Errante",
     unlockable: true,
     requirement: "¿Qué ejemplo de mal uso de estadísticas conoces? ¿De tu vida o de las clases?",
     description_fun: "Apoyarse en las estadísticas sin entenderlas puede ser cómodo... pero no muy iluminador.",
-    description_tech: "‘Statistics are like a lamppost to a drunk – more for support than illumination.’ Esta cita clásica refleja los riesgos del mal uso y la interpretación sesgada de estadísticas en contextos no rigurosos.",
+    description_tech: "‘Las estadísticas son como un poste de la luz para un borracho – las usa para apoyarse en vez de para iluminar. (cf. Housman)’ Esta cita clásica refleja los riesgos del mal uso y la interpretación sesgada de estadísticas en contextos no rigurosos.",
     image: "stk/u1c1s3.png",
-    links: []
+    links: [https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0005-1-antecedentes/p0018-1-3-advertencias]
   },
 
   // Clase 2: Variables
@@ -37,30 +37,30 @@ export const stickerLibrary = {
     name: "Walter Giardino",
     unlockable: true,
     requirement: "¿Qué tipos de sujetos has leído que se usen en investigaciones psicológicas? Da ejemplos reales.",
-    description_fun: "Una rata muy profesional. Ha trabajado con Skinner, Bandura y Netflix.",
+    description_fun: "Esta rata blanca es muy profesional. Trabajó con Watson, Skinner y Rogers. Pronto su vida será adaptada a una serie de Netflix.",
     description_tech: "En psicología se han utilizado diversos sujetos de investigación. El conductismo popularizó el uso de ratas, pero también se emplean humanos, niños, animales no humanos, inteligencias artificiales, etc.",
     image: "stk/u1c2s1.png",
     links: []
   },
   "u1c2s2": {
     id: "u1c2s2",
-    name: "Caja Clasificadora",
+    name: "Jugando a clasificar",
     unlockable: true,
     requirement: "¿Qué tipos de variables conoces según naturaleza, nivel de medición y rol? ¿Puedes dar ejemplos?",
-    description_fun: "¡Nada entra si no está bien clasificado!",
+    description_fun: "¡Nada funciona si no está bien clasificado!",
     description_tech: "Existen variables cualitativas y cuantitativas, con niveles de medición nominal, ordinal, de intervalo y de razón. Además, cumplen distintos roles: independientes, dependientes, predictoras, criterio, etc.",
     image: "stk/u1c2s2.png",
-    links: []
+    links: [https://www.youtube.com/watch?v=6pDH66X3ClA]
   },
   "u1c2s3": {
     id: "u1c2s3",
-    name: "La Medidora",
+    name: "La huincha mágica",
     unlockable: true,
     requirement: "¿Qué variables consideras importantes de medir en psicología y qué instrumentos se usan para ello?",
-    description_fun: "Puede medir lo visible... y lo invisible también, si tiene buena validación.",
+    description_fun: "Puede medir lo visible y lo invisible. Supercalifragilístico.",
     description_tech: "En psicología medimos habilidades, emociones, creencias, conductas, tiempos de reacción, etc., usando escalas psicométricas, entrevistas, observaciones, registros automatizados, entre otros.",
     image: "stk/u1c2s3.png",
-    links: []
+    links: [https://www.youtube.com/watch?v=QXn3r5plloI]
   },
 
   // Clase 3: Datos
@@ -68,31 +68,31 @@ export const stickerLibrary = {
     id: "u1c3s1",
     name: "Tesoro Tidy",
     unlockable: true,
-    requirement: "¿Sabes distinguir una matriz tidy? ¿Qué dataset abierto conoces que sea valioso para la psicología?",
+    requirement: "¿Sabes construir o distinguir una matriz tidy? ¿Qué dataset abierto conoces que sea valioso para la psicología?",
     description_fun: "No todos los tesoros están enterrados. Algunos están en formato CSV.",
     description_tech: "Un buen conjunto de datos, bien recopilado y organizado, es un recurso valioso. En ciencia de datos usamos el formato tidy y promovemos el uso de datos abiertos para replicabilidad y transparencia.",
     image: "stk/u1c3s1.png",
-    links: []
+    links: [https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0019-2-organizar/p0025-2-3-matriz/p0026-orden]
   },
   "u1c3s2": {
     id: "u1c3s2",
-    name: "La Navaja Estadística",
+    name: "Herramienta multifuncional",
     unlockable: true,
     requirement: "¿Has hecho tablas de frecuencia, gráficos de barra, medidas de tendencia central o histogramas por ti mismo/a? ¿Sobre qué variables?",
-    description_fun: "Una herramienta para cada tipo de variable. Y ninguna para cortar datos que no te gustan.",
-    description_tech: "La estadística descriptiva es un conjunto de herramientas para resumir datos. Usamos frecuencias y gráficos para variables cualitativas, y MTC e histogramas para variables cuantitativas.",
+    description_fun: "Una herramienta para cada tipo de variable. Pero no las uses para cortar tramposamente resultados que no nos gustan.",
+    description_tech: "La estadística descriptiva es un conjunto de herramientas para resumir datos. Inicialmente usamos frecuencias y gráficos para variables cualitativas, y MTC e histogramas para variables cuantitativas.",
     image: "stk/u1c3s2.png",
-    links: []
+    links: [https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0030-3-resumir]
   },
   "u1c3s3": {
     id: "u1c3s3",
-    name: "El Crimen del Piechart",
+    name: "Gráficos criminales",
     unlockable: true,
-    requirement: "¿Has visto o creado un gráfico terrible? ¿Qué lo hacía inadecuado?",
-    description_fun: "Este gráfico fue condenado por exceso de 3D y explosiones innecesarias.",
+    requirement: "¿Has visto o creado un gráfico terrible? ¿Qué lo hacía inadecuado? ¿Puedes dar ejemplos?",
+    description_fun: "Este gráfico fue condenado por exceso de 3D y explosiones innecesarias. Vive arrepentido.",
     description_tech: "Los piecharts pueden ser poco informativos, y el uso de gráficos 3D, escalas manipuladas o elementos decorativos innecesarios puede distorsionar la interpretación de los datos.",
     image: "stk/u1c3s3.png",
-    links: []
+    links: [https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0030-3-resumir/p0036-graficos/p0039-horrores]
   }, // <-- COMA AQUÍ
   // Unidad 3: Relaciones — Clase 1: Contingencia
   "u3c1s1": {
@@ -109,8 +109,8 @@ export const stickerLibrary = {
     id: "u3c1s2",
     name: "Constructores de Barras",
     unlockable: true,
-    requirement: "¿Construiste los tres tipos de gráficos bivariantes categóricos? ¿Puedes interpretarlos adecuadamente?",
-    description_fun: "¡Agrupar, apilar, escalar! Un día más en la obra de la visualización.",
+    requirement: "¿Construiste los tres tipos de gráficos bivariantes categóricos? ¿Puedes interpretarlos adecuadamente? ¿Qué variables analizaste?",
+    description_fun: "¡Agrupar, apilar, escalar! Un día más en la obra de la visualización. Estas criaturas son increíblemente felices.",
     description_tech: "Para visualizar relaciones entre dos variables categóricas se utilizan distintos gráficos: barras agrupadas, barras apiladas y barras apiladas escaladas. Cada uno representa los datos de forma distinta según si se muestran frecuencias absolutas o proporciones, y según el tipo de eje usado.",
     image: "stk/u3c1s2.png",
     links: []
@@ -119,9 +119,9 @@ export const stickerLibrary = {
     id: "u3c1s3",
     name: "¿De Acuerdo?",
     unlockable: true,
-    requirement: "¿Qué usos de las escalas de Likert conoces? ¿Qué otros métodos similares has visto? ¿Crees que sirven para todo tipo de análisis?",
-    description_fun: "Cinco caritas. Mil opiniones.",
-    description_tech: "Las escalas de Likert, desarrolladas por Rensis Likert, permiten medir actitudes u opiniones en formato ordinal (por ejemplo, de 1 a 5). También existen diferenciales semánticos y otros formatos. Aunque son ordinales, a veces se tratan como numéricas usando promedios y desviaciones estándar. Esto depende del contexto, pero lo clave es comprender los datos más allá de seguir recetas fijas.",
+    requirement: "¿Qué usos de las escalas de Likert conoces? ¿Qué otros métodos similares has visto? ¿Puedes dar ejemplos?",
+    description_fun: "Don Rensis, expresando su grado de acuerdo o desacuerdo desde 1932.",
+    description_tech: "Las escalas de Likert, desarrolladas por el Psicólogo Rensis Likert, permiten medir actitudes u opiniones en formato ordinal (por ejemplo, de 1 a 5). También existen diferenciales semánticos y otros formatos. Aunque son ordinales, a veces se tratan como numéricas usando promedios y desviaciones estándar. Esto depende del contexto, pero lo clave es comprender los datos más allá de seguir recetas fijas.",
     image: "stk/u3c1s3.png",
     links: []
   },
