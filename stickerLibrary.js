@@ -8,7 +8,12 @@ export const stickerLibrary = {
     description_fun: "Dicen que esta lámpara sólo ilumina a quienes están dispuestos a renunciar a su propio ego y a entregar su corazón.",
     description_tech: "La estadística es la disciplina que nos enseña cómo recolectar, organizar, analizar e interpretar datos para construir conocimiento (Elgueta, 2025). La estadística descriptiva se enfoca en resumir y hacer los datos más comprensibles.",
     image: "stk/u1c1s1.png",
-    links: ["https://heelgueta.gitbook.io/edesc/p0004-i-introduccion"]
+links: [
+  {
+    url: "https://heelgueta.gitbook.io/edesc/p0004-i-introduccion",
+    label: "Introducción a la Estadística (GitBook)"
+  }
+]
   },
   "u1c1s2": {
     id: "u1c1s2",
