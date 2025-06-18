@@ -255,7 +255,7 @@ html += `
   <p><strong>Requisito:</strong> ${info.requirement || "Requisito no disponible."}</p>
   <textarea id="stickerInput" placeholder="Tu reflexión aquí...">${data.message || ""}</textarea>
   <br>
-  <button id="claimBtn">Reclamar sticker</button>
+  <button id="claimBtn">Desbloquear sticker</button>
   <button id="cancelBtn">Cancelar</button>
 `;
   } else if (!claimed && !info.unlockable) {
@@ -266,14 +266,14 @@ html += `
       <img src="${info.image || 'stk/' + id + '.png'}" style="width: 120px; display:block; margin: 10px 0;">
       <h3>${certified ? "✅ Certificado por el profesor" : ""}</h3>
       <p><strong>Descripción:</strong> ${info.description_fun || "No disponible"}</p>
-      <p><strong>Contenido técnico:</strong> ${info.description_tech || "No disponible"}</p>
+      <p><strong>Contenido:</strong> ${info.description_tech || "No disponible"}</p>
       <p><strong>Referencias:</strong><br>${
         info.links?.length
           ? info.links.map(l => `<a href="${l.url}" target="_blank">${l.label}</a>`).join("<br>")
           : "No disponibles"
       }</p>
-      <p><strong>Mensaje del estudiante:</strong> "${data.message || "(sin mensaje)"}"</p>
-      <p><strong>Fecha:</strong> ${data.timestamp ? new Date(data.timestamp).toLocaleString() : "(sin fecha)"}</p>
+      <p><strong>Estudiante dice:</strong> "${data.message || "(sin mensaje)"}"</p>
+      <p><strong>Fecha desbloqueo:</strong> ${data.timestamp ? new Date(data.timestamp).toLocaleString() : "(sin fecha)"}</p>
 <button id="unclaimBtn">Deshacer desbloqueo</button>
     `;
     document.getElementById("unclaimBtn")?.addEventListener("click", () => unclaimSticker(id));
