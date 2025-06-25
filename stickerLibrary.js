@@ -126,6 +126,50 @@ links: [  {url: "https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0030-3
     links: []
   },
 
+
+
+  // Unidad 3: Relaciones — Clase 2: Asociación y predicción
+  "u3c2s1": {
+    id: "u3c2s1",
+    name: "¿Hay correlación?",
+    unlockable: true,
+    requirement: "¿Cómo puede estudiarse la asociación entre dos variables numéricas?",
+    description_fun: "Parece haber una asociación lineal en este scatterplot pero un caso atípico se quedó abajo solito. ¿Afectará mucho el R de Pearson?",
+    description_tech: "La correlación de Pearson cuantifica la asociación lineal entre dos variables numéricas. Su valor r varía entre -1 y 1 e indica dirección y magnitud de la relación. Podemos también explorar los datos bivariantes con un gráfico de dispersión para descartar la presencia de casos atípicos o de relaciones no-lineales.",
+    image: "stk/u3c2s1.png",
+    links: [
+      { url: "https://rpsychologist.com/correlation/", label: "Understanding Correlations" },
+            { url: "https://www.guessthecorrelation.com/", label: "Guess the Correlation" }
+
+    ]
+  },
+  "u3c2s2": {
+    id: "u3c2s2",
+    name: "Correlación y Regresión para Predicción",
+    unlockable: true,
+    requirement: "¿Para qué par(es) de variables creastes gráficos y estimaste R de Pearson?, ¿qué resultados encontraste?, ¿qué interpretación le das?",
+    description_fun: "¿Quieres conocer el futuro? Tal vez se puede modelar.",
+    description_tech: "Cuando encontramos correlaciones lineales, estas pueden llegar a usarse para construir ecuaciones de regresión lineal que permiten modelar la relación entre una variable predictora X y una variable respuesta Y. Puede ser útil para predecir valores futuros y entender tendencias.",
+    image: "stk/u3c2s2.png",
+    links: [
+      { url: "", label: "" }
+      
+    ]
+  },
+  "u3c2s3": {
+    id: "u3c2s3",
+    name: "El Pirata Acalorado",
+    unlockable: true,
+    requirement: "¿Qué relación espuria te pareció más curiosa? ¿Por qué es importante no confundir correlación con causalidad?",
+    description_fun: "¡Arrrgh! El confundido señor pirata extraña a sus amigos del pasado y contempla perplejo un caluroso e incierto futuro mientras come su helado favorito",
+    description_tech: "Una correlación lineal no implica una relación causal. Factores externos, coincidencias o relaciones espurias pueden explicar asociaciones llamativas pero engañosas.",
+    image: "stk/u3c2s3.png",
+    links: [
+      { url: "https://www.tylervigen.com/spurious-correlations", label: "Spurious Correlations" }
+    ]
+  },
+
+  
   // Placeholder safe copies for all others
   ...Object.fromEntries(
     Array.from({ length: 3 }, (_, u) =>
