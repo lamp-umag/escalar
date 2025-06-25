@@ -131,7 +131,7 @@ links: [  {url: "https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0030-3
   // Unidad 3: Relaciones — Clase 2: Asociación y predicción
   "u3c2s1": {
     id: "u3c2s1",
-    name: "¿Hay correlación?",
+    name: "¿Correlaciona?",
     unlockable: true,
     requirement: "¿Cómo puede estudiarse la asociación entre dos variables numéricas?",
     description_fun: "Parece haber una asociación lineal en este scatterplot pero un caso atípico se quedó abajo solito. ¿Afectará mucho el R de Pearson?",
@@ -145,7 +145,7 @@ links: [  {url: "https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0030-3
   },
   "u3c2s2": {
     id: "u3c2s2",
-    name: "Correlación y Regresión para Predicción",
+    name: "Bola Computarizada",
     unlockable: true,
     requirement: "¿Para qué par(es) de variables creastes gráficos y estimaste R de Pearson?, ¿qué resultados encontraste?, ¿qué interpretación le das?",
     description_fun: "¿Quieres conocer el futuro? Tal vez se puede modelar.",
