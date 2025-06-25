@@ -180,7 +180,7 @@ links: [  {url: "https://heelgueta.gitbook.io/edesc/p0004-i-introduccion/p0030-3
             "u1c1s1", "u1c1s2", "u1c1s3",
             "u1c2s1", "u1c2s2", "u1c2s3",
             "u1c3s1", "u1c3s2", "u1c3s3",
-            "u3c1s1", "u3c1s2", "u3c1s3"
+            "u3c1s1", "u3c1s2", "u3c1s3",
             "u3c2s1", "u3c2s2", "u3c2s3"
 
           ].includes(id)) return null;
