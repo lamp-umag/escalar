@@ -1,97 +1,186 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Panel Admin - Stickers</title>
-  <style>
-    body { font-family: sans-serif; padding: 1em; }
-    pre { background: #f0f0f0; padding: 1em; overflow-x: auto; }
-    .user-block { border: 1px solid #ccc; margin-bottom: 1em; padding: 1em; }
-    .sticker { margin-left: 1em; font-size: 0.95em; }
-    .log { margin-left: 1em; font-style: italic; color: #666; }
-  </style>
-</head>
-<body>
-  <h1>👩‍🏫 Panel de Administración</h1>
-  <p id="status">Cargando...</p>
-  <div id="output"></div>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Panel Admin Avanzado</title>
+<style>
+  body { font-family: sans-serif; padding: 1em; }
+  button { margin: 0.25em; }
+  .hidden { display: none; }
+  table { width: 100%; border-collapse: collapse; margin-top: 1em; }
+  th, td { border: 1px solid #ccc; padding: 0.5em; text-align: left; }
+  th { background: #eee; }
+</style>
+</head><body>
+<h1>👩‍🏫 Panel de Administración Avanzado</h1>
+<div id="status">Cargando...</div>
+<button onclick="logout()">Cerrar sesión</button>
 
-  <script type="module">
-    import { auth, db } from './firebase-init.js';
-    import { onAuthStateChanged, signInWithPopup, signOut, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
-    import { collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+<div id="tabs" class="hidden">
+  <button onclick="showView('overview')">📊 Estadísticas</button>
+  <button onclick="showView('byUser')">👤 Por Usuario</button>
+  <button onclick="showView('bySticker')">🎯 Por Sticker</button>
+  <button onclick="exportCSV('fullLog')">📥 Exportar Log Completo</button>
+  <button onclick="exportCSV('latestResponses')">📥 Exportar Respuestas Recientes</button>
+</div>
 
-    const allowedAdmin = "hermanelgueta@gmail.com";
-    const output = document.getElementById("output");
-    const status = document.getElementById("status");
+<div id="overview" class="view hidden">
+  <h2>Resumen General</h2>
+  <ul>
+    <li>Total usuarios: <span id="statUsers">0</span></li>
+    <li>Total logins: <span id="statLogins">0</span></li>
+    <li>Total claims: <span id="statClaims">0</span></li>
+    <li>Total unclaims: <span id="statUnclaims">0</span></li>
+    <li>Total switches: <span id="statSwitches">0</span></li>
+  </ul>
+</div>
 
-    onAuthStateChanged(auth, async user => {
-      if (!user) {
-        status.textContent = "Iniciando sesión como administrador...";
-        try {
-          await signInWithPopup(auth, new GoogleAuthProvider());
-        } catch (e) {
-          status.textContent = "Error al iniciar sesión.";
-          console.error(e);
-        }
-        return;
+<div id="byUser" class="view hidden">
+  <h2>Vista por Usuario</h2>
+  <table><thead><tr>
+    <th>Email</th>
+    <th>Logins</th><th>Claims</th><th>Unclaims</th><th>Switches</th>
+  </tr></thead><tbody id="userTable"></tbody></table>
+</div>
+
+<div id="bySticker" class="view hidden">
+  <h2>Respuestas por Sticker</h2>
+  <div id="stickerResponses"></div>
+</div>
+
+<script type="module">
+import { auth, db } from './firebase-init.js';
+import { onAuthStateChanged, signInWithPopup, signOut, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const allowedAdmin = "hermanelgueta@gmail.com";
+const status = document.getElementById("status");
+const tabs = document.getElementById("tabs");
+
+onAuthStateChanged(auth, async user => {
+  if (!user) {
+    status.textContent = "Iniciando sesión...";
+    await signInWithPopup(auth, new GoogleAuthProvider());
+    return;
+  }
+  if (user.email !== allowedAdmin) {
+    status.textContent = `Acceso denegado: ${user.email}`;
+    return;
+  }
+  status.textContent = `Conectado como ${user.email}`;
+  tabs.classList.remove("hidden");
+  loadData();
+});
+
+function logout(){ signOut(auth); }
+
+async function loadData(){
+  const snap = await getDocs(collection(db, "users"));
+  const users = [];
+  const events = []; // all events
+  const stickerMap = {}; // responses per sticker
+
+  snap.forEach(doc => {
+    const data = doc.data();
+    const email = data.email || doc.id;
+    users.push({ email, ...data });
+    (data.logs||[]).forEach(l => {
+      events.push({ email, ...l });
+      // if it's a claim with message, collect it
+      if(l.action?.startsWith("claimed") && l.message){
+        const sticker = l.action.split(" ")[1];
+        stickerMap[sticker] = stickerMap[sticker] || [];
+        stickerMap[sticker].push({ email, message: l.message, time: l.time });
       }
-
-      if (user.email !== allowedAdmin) {
-        status.innerHTML = `Acceso denegado para ${user.email}. <button onclick="logout()">Cerrar sesión</button>`;
-        return;
-      }
-
-      status.innerHTML = `Conectado como ${user.email}. <button onclick="logout()">Cerrar sesión</button>`;
-      loadAllUsers();
     });
+  });
 
-    async function loadAllUsers() {
-      try {
-        const snap = await getDocs(collection(db, "users"));
-        output.innerHTML = "";
+  renderOverview(events, users);
+  renderByUser(events, users);
+  renderBySticker(stickerMap);
+  window._allEvents = events.sort((a,b)=> new Date(a.time)-new Date(b.time));
+  window._latestResponses = latestResponsesPerUser(users, stickerMap);
+}
 
-        snap.forEach(doc => {
-          const data = doc.data();
-          const div = document.createElement("div");
-          div.className = "user-block";
+function renderOverview(events, users){
+  document.getElementById("statUsers").textContent = users.length;
+  const counts = events.reduce((acc,e)=>{
+    if(e.action=='login') acc.logins++;
+    if(e.action.startsWith('claimed')) acc.claims++;
+    if(e.action.startsWith('unclaimed')) acc.unclaims++;
+    if(e.action.startsWith('switch')) acc.switches++;
+    return acc;
+  },{logins:0,claims:0,unclaims:0,switches:0});
+  document.getElementById("statLogins").textContent = counts.logins;
+  document.getElementById("statClaims").textContent = counts.claims;
+  document.getElementById("statUnclaims").textContent = counts.unclaims;
+  document.getElementById("statSwitches").textContent = counts.switches;
+}
 
-          let html = `<h2>${data.email || doc.id}</h2>`;
-          html += "<h3>Stickers desbloqueados:</h3>";
+function renderByUser(events, users){
+  const tbody = document.getElementById("userTable");
+  tbody.innerHTML = '';
+  users.forEach(u=>{
+    const myEvents = events.filter(e=>e.email===u.email);
+    const row = document.createElement("tr");
+    const stats = {login:0,claimed:0,unclaimed:0,switch:0};
+    myEvents.forEach(e=>{
+      if(e.action=='login') stats.login++;
+      if(e.action.startsWith('claimed')) stats.claimed++;
+      if(e.action.startsWith('unclaimed')) stats.unclaimed++;
+      if(e.action.startsWith('switch')) stats.switch++;
+    });
+    row.innerHTML = `<td>${u.email}</td><td>${stats.login}</td><td>${stats.claimed}</td>
+                     <td>${stats.unclaimed}</td><td>${stats.switch}</td>`;
+    tbody.appendChild(row);
+  });
+}
 
-          const stickers = data.stickers || {};
-          const keys = Object.keys(stickers).sort();
-          if (keys.length === 0) {
-            html += "<p><em>No hay stickers desbloqueados</em></p>";
-          } else {
-            keys.forEach(k => {
-              const s = stickers[k];
-              html += `<div class="sticker">🔖 ${k}: "${s.message}" — ${s.timestamp || "sin fecha"} ${s.certified ? "✅" : ""}</div>`;
-            });
-          }
+function renderBySticker(map){
+  const container = document.getElementById("stickerResponses");
+  container.innerHTML = '';
+  for(const [sticker, arr] of Object.entries(map)){
+    const div = document.createElement("div");
+    div.innerHTML = `<h3>${sticker} (${arr.length} respuestas)</h3>`;
+    arr.forEach(r=>{
+      div.innerHTML += `<p><strong>${r.email}</strong> (${r.time}): ${r.message}</p>`;
+    });
+    container.appendChild(div);
+  }
+}
 
-          html += "<h3>Logs:</h3>";
-          const logs = data.logs || [];
-          if (logs.length === 0) {
-            html += "<p><em>Sin logs</em></p>";
-          } else {
-            logs.slice(-20).reverse().forEach(log => {
-              html += `<div class="log">📜 ${log.time}: ${log.action || "acción"}${log.message ? ` — "${log.message}"` : ""}</div>`;
-            });
-          }
-
-          div.innerHTML = html;
-          output.appendChild(div);
-        });
-      } catch (e) {
-        console.error("Error al cargar datos:", e);
-        output.textContent = "Error al cargar los datos.";
-      }
+function latestResponsesPerUser(users, stickerMap){
+  const out = [];
+  users.forEach(u=>{
+    const obj = {email: u.email};
+    for(const sticker of Object.keys(stickerMap)){
+      const arr = stickerMap[sticker].filter(r=>r.email===u.email);
+      if(arr.length) obj[sticker] = arr[arr.length-1].message;
+      else obj[sticker] = '';
     }
+    out.push(obj);
+  });
+  return out;
+}
 
-    window.logout = () => {
-      signOut(auth);
-    };
-  </script>
-</body>
-</html>
+function exportCSV(type){
+  let rows = [];
+  if(type==='fullLog'){
+    rows = window._allEvents.map(e=> [e.time, e.email, e.action, e.message||'']);
+  } else {
+    const hdr = ['email', ...Object.keys(window._latestResponses[0]||{}).filter(k=>k!=='email')];
+    rows = [hdr];
+    window._latestResponses.forEach(u=>{
+      rows.push(hdr.map(c=> u[c] ?? ''));
+    });
+  }
+  const csv = rows.map(r=> r.map(v=> `"${v.replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = type+'.csv';
+  a.click();
+}
+
+function showView(v){
+  document.querySelectorAll('.view').forEach(d=>d.classList.add('hidden'));
+  document.getElementById(v).classList.remove('hidden');
+}
+</script>
+</body></html>
