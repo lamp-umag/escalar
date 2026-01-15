@@ -1,0 +1,8 @@
+# PDF files
+*.pdf
+
+# CSV files
+*.csv
+
+# SAV files (SPSS)
+*.sav

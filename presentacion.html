@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESCALAR - Presentación Académica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(to bottom, #1c1c3c, #4a6fa5);
+      background-attachment: fixed;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .presentation-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100vh;
+      padding: 1.5rem;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(1rem, 3.5vw, 2rem);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+      text-shadow: 3px 3px 0px #000;
+    }
+
+    h2 {
+      font-size: clamp(0.8rem, 2.5vw, 1.5rem);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+      color: #66aaff;
+      text-shadow: 2px 2px 0px #000;
+    }
+
+    p {
+      font-size: clamp(0.5rem, 1.3vw, 0.8rem);
+      line-height: 1.6;
+      margin-bottom: 0.8rem;
+    }
+
+    .title-slide {
+      background: rgba(34, 34, 68, 0.9);
+      border-radius: 15px;
+      padding: 2rem 1.5rem;
+      border: 4px solid #66aaff;
+      box-shadow: 0 0 30px rgba(102, 170, 255, 0.3);
+      max-width: 90%;
+    }
+
+    .authors {
+      font-size: clamp(0.5rem, 1.5vw, 0.9rem);
+      margin-top: 1.5rem;
+      color: #ccc;
+    }
+
+    .institution {
+      font-size: clamp(0.4rem, 1.2vw, 0.7rem);
+      margin-top: 1rem;
+      color: #aaa;
+    }
+
+    .image-slide img {
+      max-width: 95%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 3px solid #66aaff;
+      box-shadow: 0 0 20px rgba(102, 170, 255, 0.4);
+    }
+
+    .image-slide.with-references img {
+      max-height: 70vh;
+    }
+
+    .text-over-image {
+      position: absolute;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(34, 34, 68, 0.9);
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      border: 2px solid #66aaff;
+      font-size: clamp(0.6rem, 1.8vw, 1rem);
+      z-index: 10;
+    }
+
+    .text-over-image.large-title {
+      font-size: clamp(1rem, 3vw, 1.8rem);
+      padding: 1rem 1.5rem;
+    }
+
+    .references {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(34, 34, 68, 0.85);
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #444466;
+      font-size: clamp(0.35rem, 0.9vw, 0.55rem);
+      text-align: left;
+      max-width: 90%;
+      z-index: 10;
+      line-height: 1.4;
+    }
+
+    .content-box {
+      background: rgba(34, 34, 68, 0.8);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 0.5rem;
+      border: 2px solid #444466;
+      max-width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .highlight {
+      color: #66aaff;
+    }
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      width: 100%;
+      max-width: 95%;
+    }
+
+    .stat-results {
+      background: rgba(0, 114, 178, 0.2);
+      border: 2px solid #0072B2;
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      font-size: clamp(0.5rem, 1.2vw, 0.75rem);
+    }
+
+    .navigation {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.8rem;
+      z-index: 1000;
+    }
+
+    .nav-btn {
+      background: #444466;
+      color: white;
+      border: 2px solid #66aaff;
+      padding: 0.6rem 1.2rem;
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(0.35rem, 1vw, 0.6rem);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .nav-btn:hover {
+      background: #66aaff;
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .slide-counter {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(34, 34, 68, 0.9);
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      border: 2px solid #66aaff;
+      font-size: clamp(0.4rem, 1vw, 0.6rem);
+      z-index: 1000;
+    }
+
+    ul {
+      list-style: none;
+      text-align: left;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 0.6rem;
+      padding-left: 1.2rem;
+      position: relative;
+      font-size: clamp(0.45rem, 1.2vw, 0.7rem);
+      line-height: 1.5;
+    }
+
+    li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: #66aaff;
+    }
+
+    @media (max-width: 768px) {
+      .slide {
+        padding: 1rem;
+      }
+
+      .two-columns {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      .navigation {
+        bottom: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .slide-counter {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.4rem 0.6rem;
+      }
+
+      .title-slide {
+        padding: 1.5rem 1rem;
+      }
+
+      .image-slide img {
+        max-height: 75vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="presentation-container">
+    <div class="slide-counter">
+      <span id="current-slide">1</span> / <span id="total-slides">19</span>
+    </div>
+
+    <!-- Slide 1: Título -->
+    <div class="slide active">
+      <div class="slide-content">
+        <div class="title-slide">
+          <h1>ESCALAR</h1>
+          <h2>Estadística con Stickers Coleccionables para Aprender Lúdicamente y Afianzar Retención</h2>
+          <p style="margin-top: 1.5rem; font-size: clamp(0.5rem, 1.4vw, 0.85rem);">
+            Gamificación en la Enseñanza de Estadística Descriptiva para Psicología
+          </p>
+          <div class="authors">
+            <p style="text-align: center;">Herman Elgueta, María José Sandoval</p>
+            <p class="institution" style="text-align: center; margin-top: 1rem;">Departamento de Psicología<br>Universidad de Magallanes</p>
+            <p style="text-align: center; margin-top: 1rem; font-size: clamp(0.4rem, 1vw, 0.65rem); color: #66aaff;">herman.elgueta@umag.cl</p>
+            <div style="margin-top: 1.5rem; font-size: clamp(0.35rem, 0.9vw, 0.6rem); color: #aaa; text-align: center;">
+              <p style="margin-bottom: 0.5rem;"><strong>Gamificación/arte:</strong> Vicente Fernandez, Bastián Bahamondes</p>
+              <p><strong>Levantamiento de datos:</strong> Iviana Ahumada, Sebastián García</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: R de Pearson? -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <div class="text-over-image large-title">¿R de Pearson?</div>
+        <img src="what.png" alt="R de Pearson">
+      </div>
+    </div>
+
+    <!-- Slide 3: p00scattermisc.png -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <img src="p00scattermisc.png" alt="Scatter misc">
+      </div>
+    </div>
+
+    <!-- Slide 4: piratascatter.png -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <img src="piratascatter.png" alt="Pirata scatter">
+      </div>
+    </div>
+
+    <!-- Slide 5: Causalidad? -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <div class="text-over-image large-title">¿Causalidad?</div>
+        <img src="pirata.png" alt="Causalidad">
+      </div>
+    </div>
+
+    <!-- Slide 6: Contexto -->
+    <div class="slide">
+      <div class="slide-content image-slide with-references">
+        <div class="text-over-image large-title">Contexto: Desafío de enseñar estadística</div>
+        <img src="pie.png" alt="Contexto">
+        <div class="references">
+          Estrada et al. (2011), Gal et al. (1997), Pérez-Torregrosa et al. (2017), Ramirez et al. (2012), Estrada et al. (2021)
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7: Innovación - escalarweb1.png -->
+    <div class="slide">
+      <div class="slide-content image-slide with-references">
+        <div class="text-over-image large-title">Innovación</div>
+        <img src="escalarweb1.png" alt="ESCALAR Web 1">
+        <div class="references">
+          Paura & Armayor (2013), Ramirez et al. (2012), Gal et al. (1997), Estrada et al. (2011), Pérez-Torregrosa et al. (2017)
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 8: Innovación - escalarweb2.png -->
+    <div class="slide">
+      <div class="slide-content image-slide with-references">
+        <div class="text-over-image large-title">Innovación</div>
+        <img src="escalarweb2.png" alt="ESCALAR Web 2">
+        <div class="references">
+          Paura & Armayor (2013), Ramirez et al. (2012), Gal et al. (1997), Estrada et al. (2011), Pérez-Torregrosa et al. (2017)
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 9: Estudio -->
+    <div class="slide">
+      <div class="slide-content">
+        <div class="text-over-image" style="position: relative; top: 0; margin-bottom: 1rem;">Estudio</div>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; width: 100%; max-width: 95%;">
+          <div style="flex: 1;">
+            <img src="rata.png" alt="Estudio" style="max-width: 100%; max-height: 60vh; object-fit: contain;">
+          </div>
+          <div style="flex: 1;">
+            <div class="content-box">
+              <ul>
+                <li>n ~ 42; n ~ 26</li>
+                <li>Medición psicométrica</li>
+                <li>Acceso datos oficiales</li>
+                <li>Registro uso plataforma</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 10: Resultados p01 -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <div class="text-over-image">Resultados</div>
+        <img src="p01hist1.png" alt="Resultado p01">
+      </div>
+    </div>
+
+    <!-- Slide 11: Resultados p02 -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <div class="text-over-image">Resultados</div>
+        <img src="p02hist2.png" alt="Resultado p02">
+      </div>
+    </div>
+
+    <!-- Slide 12: Resultados p03 -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <div class="text-over-image">Resultados</div>
+        <img src="p03scatter1.png" alt="Resultado p03">
+      </div>
+    </div>
+
+    <!-- Slide 13: Resultados p04 -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <div class="text-over-image">Resultados</div>
+        <img src="p04scatter7.png" alt="Resultado p04">
+      </div>
+    </div>
+
+    <!-- Slide 14: Resultados p05 -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <div class="text-over-image">Resultados</div>
+        <img src="p05scatter4.png" alt="Resultado p05">
+      </div>
+    </div>
+
+    <!-- Slide 15: Resultados p06 -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <div class="text-over-image">Resultados</div>
+        <img src="p06scatter8.png" alt="Resultado p06">
+      </div>
+    </div>
+
+    <!-- Slide 16: Resultados p07 -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <div class="text-over-image">Resultados</div>
+        <img src="p07scatter9.png" alt="Resultado p07">
+      </div>
+    </div>
+
+    <!-- Slide 17: Resultados p09 -->
+    <div class="slide">
+      <div class="slide-content image-slide">
+        <div class="text-over-image">Resultados</div>
+        <img src="p09partial.png" alt="Resultado p09">
+      </div>
+    </div>
+
+    <!-- Slide 19: Discusión -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>Discusión</h1>
+        <div class="content-box">
+          <h2 style="margin-bottom: 1.5rem;">¿Resultó?</h2>
+          <div class="stat-results">
+            <p><strong>Modelo 1:</strong></p>
+            <p>Multiple R-squared: 0.424</p>
+            <p>Adjusted R-squared: 0.3455</p>
+          </div>
+          <div class="stat-results">
+            <p><strong>Modelo 2:</strong></p>
+            <p>Multiple R-squared: 0.5107</p>
+            <p>Adjusted R-squared: 0.4175</p>
+          </div>
+          <div class="stat-results" style="background: rgba(102, 170, 255, 0.2); border-color: #66aaff;">
+            <p><strong>R-squared change (Model 1 to Model 2): 0.0867</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 20: Gracias -->
+    <div class="slide">
+      <div class="slide-content">
+        <div class="title-slide">
+          <h1>GRACIAS</h1>
+          <div class="institution" style="margin-top: 2rem;">
+            <p style="text-align: center;">Herman Elgueta, María José Sandoval</p>
+            <p style="text-align: center; margin-top: 1rem;">Proyecto de Innovación e Investigación en Docencia</p>
+            <p style="text-align: center; margin-top: 1rem;">Universidad de Magallanes</p>
+            <p style="text-align: center; margin-top: 1rem; font-size: clamp(0.4rem, 1vw, 0.65rem); color: #66aaff;">herman.elgueta@umag.cl</p>
+            <div style="margin-top: 1.5rem; font-size: clamp(0.35rem, 0.9vw, 0.6rem); color: #aaa; text-align: center;">
+              <p style="margin-bottom: 0.5rem;"><strong>Gamificación/arte:</strong> Vicente Fernandez, Bastián Bahamondes</p>
+              <p><strong>Levantamiento de datos:</strong> Iviana Ahumada, Sebastián García</p>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; font-size: clamp(0.4rem, 1vw, 0.6rem); color: #66aaff;">
+              ESCALAR - 2025
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+      <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)">◀ ANTERIOR</button>
+      <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">SIGUIENTE ▶</button>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    document.getElementById('total-slides').textContent = totalSlides;
+
+    function showSlide(n) {
+      if (n >= totalSlides) {
+        currentSlide = 0;
+      } else if (n < 0) {
+        currentSlide = totalSlides - 1;
+      } else {
+        currentSlide = n;
+      }
+
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[currentSlide].classList.add('active');
+      
+      document.getElementById('current-slide').textContent = currentSlide + 1;
+      
+      // Update button states
+      document.getElementById('prev-btn').disabled = currentSlide === 0;
+      document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+    }
+
+    function changeSlide(direction) {
+      showSlide(currentSlide + direction);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') changeSlide(-1);
+      if (e.key === 'ArrowRight') changeSlide(1);
+    });
+
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50) {
+        changeSlide(1); // Swipe left - next
+      }
+      if (touchEndX > touchStartX + 50) {
+        changeSlide(-1); // Swipe right - previous
+      }
+    }
+
+    // Initialize
+    showSlide(0);
+  </script>
+</body>
+</html>
